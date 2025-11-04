@@ -1,0 +1,30 @@
+body {
+  background-color: #f0f8ff; 
+}
+
+h1, h2, h3 {
+  color: #0033a0; 
+}
+
+.btn-primary {
+  background-color: #0033a0;
+  border-color: #0033a0;
+}
+
+.btn-warning {
+  background-color: #ff0000;
+  border-color: #ff0000;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  border-color: #cccccc;
+  color: #0033a0;
+}
+
+footer {
+  background-color: #0033a0;
+  color: white;
+  padding: 10px;
+}
