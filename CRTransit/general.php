@@ -33,7 +33,7 @@
           <li class="nav-item"><a class="nav-link active" href="index.php">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="rutas.php">Rutas</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Notificaciones</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
+          <li class="nav-item"><a class="nav-link" href="alertas.php">Alertas</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Iniciar Sesión</a></li>
         </ul>
       </div>
