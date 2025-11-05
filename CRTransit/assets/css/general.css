@@ -1,0 +1,27 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9fafb;
+}
+
+
+.navbar {
+  padding: 12px 30px;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffd43b !important;
+}
+
+
+
