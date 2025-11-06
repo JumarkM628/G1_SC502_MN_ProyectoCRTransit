@@ -34,7 +34,7 @@
           <li class="nav-item"><a class="nav-link" href="rutas.php">Rutas</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Notificaciones</a></li>
           <li class="nav-item"><a class="nav-link" href="alertas.php">Alertas</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Iniciar Sesión</a></li>
+          <li class="nav-item"><a class="nav-link" href="RegistroL.php">Iniciar Sesión</a></li>
         </ul>
       </div>
     </div>
