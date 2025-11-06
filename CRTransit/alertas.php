@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>CRTransit - Alertas</title>
@@ -30,6 +30,8 @@
     ?>
 
   </div>
+
+  <?php include 'footer.php' ?>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -19,7 +19,7 @@ session_start();
 
 <body>
 
-  <?php include("general.php"); ?>
+  <?php include 'general.php' ?>
 
   <div class="container my-5">
     <h1 class="text-center fw-bold mb-4">Rutas Disponibles</h1>
@@ -109,6 +109,8 @@ session_start();
     </div>
 
   </div>
+
+  <?php include 'footer.php' ?>
 
   <script src="assets/js/rutas.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
