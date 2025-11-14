@@ -1,48 +1,47 @@
-
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #f9fafb;
-}
-
-.navbar {
-  padding: 12px 30px;
-}
-
-.navbar-brand {
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-}
-
-.nav-link {
-  transition: 0.3s;
-}
-
-.nav-link:hover {
-  color: #ffd43b !important;
-}
-
-footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.9em;
-      letter-spacing: 0.5px;
-    }
-
-
-    body {
     margin: 0;
     padding: 0;
-    background-image: url("../img/994726b9-3778-4f45-9433-911ac2149673.png");
+    min-height: 100vh;
+
+    background-image: url("https://media.pixverse.ai/pixverse%2Ft2i%2Fori%2F2c31e24a-910e-42a4-84bd-8dfd5a548c13.jpg?x-oss-process=style/cover-webp"); /* tu imagen */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
 }
 
+.navbar {
+    padding: 12px 30px;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffd43b !important;
+}
+
+.container {
+    flex: 1;  
+}
+
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
 
 
