@@ -1,7 +1,7 @@
 .fondo {
     background-color: #ffffff;
     height: 100vh;
-    background-image: url(https://media.pixverse.ai/pixverse%2Ft2i%2Fori%2F0d899e5e-6f10-4dd7-bebf-d31c8d1c8e15.jpg?x-oss-process=style/cover-webp);
+    background-image: url("https://media.pixverse.ai/pixverse%2Ft2i%2Fori%2F0d899e5e-6f10-4dd7-bebf-d31c8d1c8e15.jpg?x-oss-process=style/cover-webp");
     background-size: cover;
 }
 
