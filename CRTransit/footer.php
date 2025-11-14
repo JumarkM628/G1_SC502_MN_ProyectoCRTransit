@@ -15,3 +15,5 @@
 </body>
 
 </html>
+
+<link rel="stylesheet" href="assets/css/general.css">

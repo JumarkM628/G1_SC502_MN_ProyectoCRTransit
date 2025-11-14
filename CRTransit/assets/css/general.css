@@ -40,5 +40,16 @@ footer {
     }
 
 
+    body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/994726b9-3778-4f45-9433-911ac2149673.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+
 
 
