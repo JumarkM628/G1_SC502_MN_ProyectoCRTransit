@@ -3,7 +3,7 @@ body {
     padding: 0;
     min-height: 100vh;
 
-    background-image: url("https://media.pixverse.ai/pixverse%2Ft2i%2Fori%2F2c31e24a-910e-42a4-84bd-8dfd5a548c13.jpg?x-oss-process=style/cover-webp"); /* tu imagen */
+    background-image: url("https://media.pixverse.ai/pixverse%2Ft2i%2Fori%2F2c31e24a-910e-42a4-84bd-8dfd5a548c13.jpg?x-oss-process=style/cover-webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -38,9 +38,8 @@ session_start();
           <p id="descripcion-ruta" class="text-muted">
             Aquí se mostrará la información de la ruta seleccionada.
           </p>
-          <div id="mapa" class="mapa-simulacion mt-3">
-            <p class="text-center text-secondary pt-5">Mapa simulado de la ruta</p>
-          </div>
+          
+          <div id="map"></div>
 
 
           <div class="container mt-5">
@@ -112,12 +111,19 @@ session_start();
 
   <?php include 'footer.php' ?>
 
-  <script src="assets/js/rutas.js"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-</body>
+    
+  <script src="assets/js/rutas.js"></script>
 
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBksgxjZaSow4GA1Ht1l0W4eOdghW2486Y&libraries=places&callback=iniciarMap&loading=async"
+        async defer>
+        </script>
+
+</body>
 </html>
 
 <link rel="stylesheet" href="assets/css/general.css">
