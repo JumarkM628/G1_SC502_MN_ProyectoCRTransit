@@ -15,12 +15,10 @@
       <label for="ruta" class="form-label">Selecciona tu ruta:</label>
       <select name="ruta" id="ruta" class="form-select">
         <option value="">-- Selecciona --</option>
-        <option value="500">Ruta 500 - Desamparados</option>
-        <option value="520">Ruta 520 - Pavas</option>
-        <option value="540">Ruta 540 - Escazú</option>
-        <option value="550">Ruta 550 - Curridabat</option>
-        <option value="570">Ruta 570 - Moravia</option>
-        <option value="590">Ruta 590 - Montes de Oca</option>
+        <option value="alajuela">San José – Alajuela</option>
+        <option value="cartago">San José – Cartago</option>
+        <option value="heredia">San José – Heredia</option>
+        <option value="desamparados">San José – Desamparados</option>
       </select>
       <button type="submit" class="btn btn-primary mt-3">Calcular llegada</button>
     </form>
@@ -33,35 +31,25 @@
       $tipo = "info";
 
       switch ($ruta) {
-        case "500":
-          $tiempo = "🕒 El bus llegará en 6 minutos.";
-          $alerta = "⚠️ Tráfico moderado en Desamparados.";
+        case "alajuela":
+          $tiempo = "🕒 El bus llegará en 8 minutos.";
+          $alerta = "⚠️ Tráfico moderado en la autopista General Cañas.";
           $tipo = "warning";
           break;
-        case "520":
-          $tiempo = "🕒 El bus llegará en 10 minutos.";
-          $alerta = "⚠️ Obras en Pavas.";
-          $tipo = "danger";
-          break;
-        case "540":
-          $tiempo = "🕒 El bus llegará en 9 minutos.";
-          $alerta = "⚠️ Alta demanda en Escazú.";
-          $tipo = "warning";
-          break;
-        case "550":
-          $tiempo = "🕒 El bus llegará en 11 minutos.";
-          $alerta = "⚠️ Desvío temporal en Curridabat.";
-          $tipo = "danger";
-          break;
-        case "570":
+        case "cartago":
           $tiempo = "🕒 El bus llegará en 12 minutos.";
-          $alerta = "⚠️ Parada cerrada en Moravia.";
+          $alerta = "⚠️ Congestión en la ruta hacia Cartago.";
           $tipo = "danger";
           break;
-        case "590":
-          $tiempo = "🕒 El bus llegará en 13 minutos.";
-          $alerta = "⚠️ Congestión en Montes de Oca.";
+        case "heredia":
+          $tiempo = "🕒 El bus llegará en 10 minutos.";
+          $alerta = "⚠️ Alta demanda en Heredia centro.";
           $tipo = "warning";
+          break;
+        case "desamparados":
+          $tiempo = "🕒 El bus llegará en 6 minutos.";
+          $alerta = "⚠️ Tráfico pesado en Desamparados.";
+          $tipo = "danger";
           break;
       }
 
