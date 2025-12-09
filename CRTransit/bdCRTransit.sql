@@ -1,0 +1,10 @@
+CREATE DATABASE crtransit;
+USE crtransit;
+
+CREATE TABLE alertas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ruta VARCHAR(100) NOT NULL,
+    mensaje VARCHAR(255) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+SELECT * FROM alertas;

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <link rel="stylesheet" href="assets/css/general.css" />
+  <link rel="stylesheet" href="../../public/css/general.css" />
 
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,11 +30,11 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="index.php">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="rutas.php">Rutas</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../../views/General/general.php">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../views/Rutas/rutas.php">Rutas</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Historial</a></li>
-          <li class="nav-item"><a class="nav-link" href="alertas.php">Alertas</a></li>
-          <li class="nav-item"><a class="nav-link" href="RegistroL.php">Iniciar Sesión</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../views/Alertas/alertas.php">Alertas</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../views/auth/RegistroL.php">Iniciar Sesión</a></li>
         </ul>
       </div>
     </div>
@@ -43,4 +43,4 @@
 
 </html>
 
-<link rel="stylesheet" href="assets/css/general.css">
+<link rel="stylesheet" href="../../public/css/general.css">
