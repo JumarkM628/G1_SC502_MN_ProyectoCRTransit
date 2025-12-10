@@ -43,6 +43,9 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
 
           <div id="map"></div>
 
+          <button id="btn-guardar-ruta" class="btn btn-success mt-3" style="display:none;">Guardar esta ruta</button>
+
+
 
           <div class="container mt-5">
 
@@ -110,6 +113,7 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBksgxjZaSow4GA1Ht1l0W4eOdghW2486Y&libraries=places&callback=iniciarMap&loading=async"
     async defer>
     </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

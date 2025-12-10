@@ -1,7 +1,4 @@
-console.log("rutas.js se cargó correctamente");
-
-console.log("Script cargado correctamente");
-
+console.log("rutas.js cargado correctamente");
 
 const rutas = [
     { id: 1, nombre: "Ruta 1", descripcion: "San José - Heredia", centro: { lat: 9.9281, lng: -84.0907 } },
@@ -10,10 +7,9 @@ const rutas = [
     { id: 4, nombre: "Ruta 4", descripcion: "Escazú - San José", centro: { lat: 9.9170, lng: -84.1407 } }
 ];
 
-
+let rutaSeleccionada = null;
 let map;
 let marker;
-let placeData = null;
 
 function iniciarMap() {
     const centroCR = { lat: 9.934739, lng: -84.087502 };
@@ -23,7 +19,7 @@ function iniciarMap() {
         zoom: 13
     });
 
-    console.log("Mapa cargado");
+    console.log("Mapa iniciado");
 }
 
 window.iniciarMap = iniciarMap;
@@ -31,45 +27,42 @@ window.iniciarMap = iniciarMap;
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const listaRutas = document.querySelector("#lista-rutas");
-    cargarRutasHtml(listaRutas);
+    const lista = document.querySelector("#lista-rutas");
 
-    listaRutas.addEventListener("click", handleSeleccionRuta);
-});
-
-function cargarRutasHtml(listaRutas) {
     let html = "";
-
-    rutas.forEach(ruta => {
+    rutas.forEach(r => {
         html += `
-            <li class="list-group-item list-group-item-action"
-                data-id="${ruta.id}">
-                ${ruta.nombre}: ${ruta.descripcion}
+            <li class="list-group-item list-group-item-action" data-id="${r.id}">
+                ${r.nombre}: ${r.descripcion}
             </li>`;
     });
 
-    listaRutas.innerHTML = html;
-}
+    lista.innerHTML = html;
+
+    lista.addEventListener("click", seleccionarRuta);
+});
 
 
-function handleSeleccionRuta(event) {
-    const item = event.target.closest(".list-group-item");
+
+function seleccionarRuta(e) {
+    const item = e.target.closest(".list-group-item");
+    if (!item) return;
+
     const id = Number(item.dataset.id);
+    rutaSeleccionada = rutas.find(r => r.id === id);
 
-    const ruta = rutas.find(r => r.id === id);
+    mostrarInformacionRuta(rutaSeleccionada);
 
-    mostrarInformacionRuta(ruta);
+    // Mostrar botón guardar
+    document.querySelector("#btn-guardar-ruta").style.display = "block";
 }
+
 
 
 function mostrarInformacionRuta(ruta) {
-    const titulo = document.querySelector("#titulo-ruta");
-    const desc = document.querySelector("#descripcion-ruta");
+    document.querySelector("#titulo-ruta").textContent = ruta.nombre;
+    document.querySelector("#descripcion-ruta").textContent = "Descripción: " + ruta.descripcion;
 
-    titulo.textContent = ruta.nombre;
-    desc.textContent = "Descripción: " + ruta.descripcion;
-
-    // Centrar mapa en la ruta seleccionada
     map.setCenter(ruta.centro);
     map.setZoom(13);
 
@@ -81,4 +74,48 @@ function mostrarInformacionRuta(ruta) {
     });
 }
 
-console.log("window.iniciarMap:", window.iniciarMap);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const boton = document.querySelector("#btn-guardar-ruta");
+
+    boton.addEventListener("click", async () => {
+
+        if (!rutaSeleccionada) {
+            Swal.fire("Selecciona una ruta primero");
+            return;
+        }
+
+        const data = {
+            nombre: rutaSeleccionada.nombre,
+            origen: rutaSeleccionada.descripcion.split(" - ")[0],
+            destino: rutaSeleccionada.descripcion.split(" - ")[1],
+            duracion: 10
+        };
+
+        try {
+            const res = await fetch("../../controller/guardarRuta.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            const respuesta = await res.json();
+
+            Swal.fire({
+                icon: "success",
+                title: "Ruta guardada",
+                text: respuesta.mensaje
+            });
+
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Hubo un problema guardando la ruta."
+            });
+        }
+    });
+});
+
+
