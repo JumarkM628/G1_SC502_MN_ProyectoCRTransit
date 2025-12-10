@@ -1,7 +1,16 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const formLogin = document.querySelector("#formLogin");
     const formRegistro = document.querySelector("#formRegistro");
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has("login_error")) {
+        Swal.fire({
+            icon: "error",
+            title: "Error al iniciar sesión",
+            text: params.get("login_error")
+        });
+    }
 
 
     const validarRegistro = (event) => {
@@ -10,7 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(formRegistro);
         const data = Object.fromEntries(formData.entries());
 
-        if (!data.nombre || !data.correo || !data.password || !data.confirmPassword) {
+        if (
+            data.nombre.trim() === "" ||
+            data.email.trim() === "" ||
+            data.password.trim() === "" ||
+            data.confirmPassword.trim() === ""
+        ) {
             Swal.fire({
                 icon: "error",
                 title: "Campos vacíos",
@@ -26,16 +40,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Verifique que ambas contraseñas sean iguales."
             });
             return;
+        } else {
+            Swal.fire({
+                icon: "success",
+                title: "Registro exitoso",
+                text: "Pase a iniciar sesión"
+            }).then(() => {
+                formRegistro.submit();
+            });
+            return;
         }
-
-        Swal.fire({
-            icon: "success",
-            title: "Registro exitoso",
-            text: "Su cuenta ha sido creada correctamente."
-        });
-
-        formRegistro.reset();
     };
+
 
     const validarLogin = (event) => {
         event.preventDefault();
@@ -43,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(formLogin);
         const data = Object.fromEntries(formData.entries());
 
-        if (!data.loginEmail || !data.loginPassword) {
+        if (data.email.trim() === "" || data.password.trim() === "") {
             Swal.fire({
                 icon: "error",
                 title: "Campos vacíos",
@@ -52,23 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        //Login de prueba
 
-        if (data.loginEmail === "usuario@correo.com" && data.loginPassword === "1234") {
-            Swal.fire({
-                icon: "success",
-                title: "Bienvenido",
-                text: "Inicio de sesión exitoso."
-            });
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Datos incorrectos",
-                text: "Correo o contraseña incorrectos."
-            });
-        }
-
-        formLogin.reset();
+        formLogin.submit();
     };
 
     formRegistro.addEventListener("submit", validarRegistro);
