@@ -33,8 +33,6 @@ session_start();
                     </li>
                 </ul>
 
-
-
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="login">
                         <form id="formLogin" method="POST" action="./auth/login.php">
