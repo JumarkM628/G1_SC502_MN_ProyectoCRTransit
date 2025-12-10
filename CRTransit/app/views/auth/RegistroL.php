@@ -33,23 +33,21 @@
 
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="login">
-                        <form id="formLogin">
+                        <form id="formLogin" method="POST" action="./auth/login.php">
                             <div class="mb-3">
                                 <label for="loginEmail" class="form-label">Correo electrónico</label>
-                                <input type="email" id="loginEmail" name="loginEmail" class="form-control"
-                                    placeholder="usuario@correo.com">
+                                <input type="email" id="loginEmail" name="email" class="form-control" placeholder="usuario@correo.com">
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label">Contraseña</label>
-                                <input type="password" id="loginPassword" name="loginPassword" class="form-control"
-                                    placeholder="********">
+                                <input type="password" id="loginPassword" name="password" class="form-control" placeholder="********">
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
                         </form>
                     </div>
 
                     <div class="tab-pane fade" id="registrarse">
-                        <form id="formRegistro">
+                        <form id="formRegistro" method="POST" action="./auth/registro.php">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre completo</label>
                                 <input type="text" id="nombre" name="nombre" class="form-control"
@@ -57,7 +55,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="correo" class="form-label">Correo electrónico</label>
-                                <input type="email" id="correo" name="correo" class="form-control"
+                                <input type="email" id="correo" name="email" class="form-control"
                                     placeholder="usuario@correo.com">
                             </div>
                             <div class="mb-3">
