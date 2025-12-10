@@ -1,113 +1,131 @@
 <?php
+session_start();
 require_once __DIR__ . '/../../models/AutobusesFuncion.php';
-$autobuses = obtenerAutobuses();
-
 require_once __DIR__ . '/../../models/AlertasFuncion.php';
 
-global $pdo;
-$stmt = $pdo->query("SELECT idRuta, nombre FROM ruta");
-$rutas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $ruta = $_POST["ruta"];
+    $nombre = $_POST["nombre"];
+    $placa = $_POST["placa"];
+
+    $nombreImagen = "";
+
+    if (!empty($_FILES["img"]["name"])) {
+        $directorio = __DIR__ . "/../../public/images/";
+        $nombreImagen = time() . "_" . basename($_FILES["img"]["name"]);
+        $rutaCompleta = $directorio . $nombreImagen;
+
+        move_uploaded_file($_FILES["img"]["tmp_name"], $rutaCompleta);
+    }
+
+    agregarAutobus($ruta, $nombre, $placa, $nombreImagen);
+    header("Location: autobuses.php?ok=1");
+    exit;
+}
+
+if (isset($_GET["delete"])) {
+    borrarAutobus($_GET["delete"]);
+    header("Location: autobuses.php?del=1");
+    exit;
+}
+
+$autobuses = obtenerAutobuses();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>CRTransit - Autobuses</title>
-  <link rel="stylesheet" href="../../public/css/general.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>CRTransit - Autobuses</title>
+    <link rel="stylesheet" href="../../public/css/general.css">
+    <link rel="stylesheet" href="../../public/css/autobuses.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
+
 <body>
 
 <?php include __DIR__ . "/../layouts/header.php"; ?>
 
 <div class="container my-5">
-  <h2>Gestión de Autobuses</h2>
 
-  <div class="row">
-    <div class="col-md-5">
-      <div class="card p-3 mb-4">
-        <h5>Agregar autobús</h5>
+    <h1 class="text-center fw-bold mb-4">Gestión de Autobuses</h1>
 
-        <form id="formAgregarBus" enctype="multipart/form-data">
-          <div class="mb-2">
+    <?php if (isset($_GET["ok"])): ?>
+        <div class="alert alert-success">Autobús agregado correctamente.</div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET["del"])): ?>
+        <div class="alert alert-danger">Autobús eliminado.</div>
+    <?php endif; ?>
+
+    <div class="card p-4 mb-4">
+        <h4>Registrar nuevo autobús</h4>
+        <form method="POST" enctype="multipart/form-data">
+
             <label class="form-label">Ruta</label>
-            <select name="idRuta" id="idRuta" class="form-select" required>
-              <option value="">--Selecciona ruta--</option>
-              <?php foreach($rutas as $r): ?>
-                <option value="<?= $r['idRuta'] ?>"><?= htmlspecialchars($r['nombre']) ?></option>
-              <?php endforeach; ?>
+            <select name="ruta" class="form-select" required>
+                <option value="">-- Selecciona --</option>
+                <option value="San José - Alajuela">San José - Alajuela</option>
+                <option value="San José - Cartago">San José - Cartago</option>
+                <option value="San José - Heredia">San José - Heredia</option>
+                <option value="San José - Desamparados">San José - Desamparados</option>
             </select>
-          </div>
 
-          <div class="mb-2">
-            <label class="form-label">Nombre conductor</label>
+            <label class="form-label mt-3">Nombre del conductor</label>
             <input type="text" name="nombre" class="form-control" required>
-          </div>
 
-          <div class="mb-2">
-            <label class="form-label">Placa</label>
+            <label class="form-label mt-3">Placa</label>
             <input type="text" name="placa" class="form-control" required>
-          </div>
 
-          <div class="mb-2">
-            <label class="form-label">Foto (jpg/png)</label>
-            <input type="file" name="img" accept=".jpg,.jpeg,.png" class="form-control">
-          </div>
+            <label class="form-label mt-3">Imagen</label>
+            <input type="file" name="img" class="form-control" required>
 
-          <button class="btn btn-success" type="submit">Agregar</button>
+            <button class="btn btn-primary mt-3">Guardar Bus</button>
         </form>
-      </div>
     </div>
 
-    <div class="col-md-7">
-      <div class="card p-3">
-        <h5>Autobuses registrados</h5>
-
-        <table class="table table-striped" id="tabla-autobuses">
-          <thead>
+    <h3 class="mt-4">Lista de Autobuses</h3>
+    <table class="table table-striped mt-3">
+        <thead>
             <tr>
-              <th>ID</th>
-              <th>Foto</th>
-              <th>Nombre</th>
-              <th>Placa</th>
-              <th>Ruta</th>
-              <th>Acciones</th>
+                <th>Ruta</th>
+                <th>Nombre Conductor</th>
+                <th>Placa</th>
+                <th>Imagen</th>
+                <th>Acción</th>
             </tr>
-          </thead>
-          <tbody>
-            <?php foreach($autobuses as $a): ?>
-              <tr data-id="<?= $a['idBus'] ?>">
-                <td><?= $a['idBus'] ?></td>
-                <td>
-                  <?php if (!empty($a['img'])): ?>
-                    <img src="../../public/images/<?= htmlspecialchars($a['img']) ?>"
-                         style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
-                  <?php else: ?>
-                    <div style="width:48px;height:48px;border-radius:50%;background:#ddd;"></div>
-                  <?php endif; ?>
-                </td>
-                <td><?= htmlspecialchars($a['nombre']) ?></td>
-                <td><?= htmlspecialchars($a['placa']) ?></td>
-                <td><?= htmlspecialchars($a['nombreRuta'] ?? '') ?></td>
-                <td>
-                  <button class="btn btn-danger btn-sm btn-eliminar">Eliminar</button>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+        </thead>
 
-      </div>
-    </div>
+        <tbody>
+            <?php foreach ($autobuses as $bus): ?>
+                <tr>
+                    <td><?= $bus["ruta"] ?></td>
+                    <td><?= $bus["nombre"] ?></td>
+                    <td><?= $bus["placa"] ?></td>
+                    <td>
+                        <img src="../../public/images/<?= $bus["img"] ?>" 
+                             width="80px" 
+                             class="rounded">
+                    </td>
+                    <td>
+                        <a href="autobuses.php?delete=<?= $bus["idBus"] ?>" 
+                           class="btn btn-danger btn-sm">
+                           Borrar
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
 
-  </div>
+    </table>
 
 </div>
 
 <?php include __DIR__ . "/../layouts/footer.php"; ?>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../../public/js/autobus.js"></script>
 
 </body>
 </html>

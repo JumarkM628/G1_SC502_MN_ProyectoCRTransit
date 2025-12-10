@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../models/AlertasFuncion.php";
-
+require_once __DIR__ . "/../../models/AutobusesFuncion.php"; // <- añadimos esto para obtener los buses
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +45,6 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
 
           <button id="btn-guardar-ruta" class="btn btn-success mt-3" style="display:none;">Guardar esta ruta</button>
 
-
-
           <div class="container mt-5">
 
             <h1 class="mb-4 text-center">Estimación de llegada</h1>
@@ -64,7 +62,6 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
             </form>
 
             <?php
-
             if (isset($_GET["ruta"]) && $_GET["ruta"] !== "") {
 
               $ruta = $_GET["ruta"];
@@ -86,12 +83,30 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
               }
 
               $alerta = obtenerAlertaPorRuta($ruta);
+              $autobus = obtenerAutobusPorRuta($ruta); 
 
               echo "<div class='alert alert-info'><strong>$tiempo</strong><br>";
-              echo $alerta ? " {$alerta['mensaje']}" : "No hay alertas para esta ruta.";
+
+              
+              echo $alerta
+                ? "<strong>Alerta:</strong> {$alerta['mensaje']}<br>"
+                : "No hay alertas para esta ruta.<br>";
+
+              
+              if ($autobus) {
+                echo "<hr>";
+                echo "<strong>Autobús asignado:</strong><br>";
+                echo "Nombre: {$autobus['nombre']}<br>";
+                echo "Placa: {$autobus['placa']}<br>";
+                if (!empty($autobus['img'])) {
+                  echo "<img src='../../public/images/{$autobus['img']}' width='120' class='mt-2 rounded'>";
+                }
+              } else {
+                echo "<strong>No hay autobuses registrados para esta ruta.</strong>";
+              }
+
               echo "</div>";
             }
-
             ?>
           </div>
         </div>
@@ -102,7 +117,6 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
 
   <?php include __DIR__ . "/../layouts/footer.php"; ?>
 
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
@@ -112,7 +126,8 @@ require_once __DIR__ . "/../../models/AlertasFuncion.php";
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBksgxjZaSow4GA1Ht1l0W4eOdghW2486Y&libraries=places&callback=iniciarMap&loading=async"
     async defer>
-    </script>
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
