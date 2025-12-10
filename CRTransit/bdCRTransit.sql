@@ -36,7 +36,9 @@ CREATE  TABLE historial(
 CREATE TABLE autobuses(
 	idBus INT AUTO_INCREMENT PRIMARY KEY,
     idRuta int,
+    nombre VARCHAR (20) NOT NULL,
     placa VARCHAR(25) NOT NULL,
+    img VARCHAR(500) NOT NULL,
     FOREIGN KEY (idRuta) REFERENCES ruta (idRuta)
     );
 

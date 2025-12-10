@@ -18,7 +18,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="index.php">
+      <a class="navbar-brand fw-bold" href="../../views/General/general.php">
         <img src="https://marketplace.canva.com/LLb8w/MAG12aLLb8w/1/tl/canva-school-bus-icon-MAG12aLLb8w.png" alt="Logo"
           width="30" height="24" class="d-inline-block align-text-top">
         CRTransit
@@ -34,6 +34,7 @@
           <li class="nav-item"><a class="nav-link" href="../../views/Rutas/rutas.php">Rutas</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Historial</a></li>
           <li class="nav-item"><a class="nav-link" href="../../views/Alertas/alertas.php">Alertas</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../views/Autobuses/autobuses.php">Autobuses</a></li>
           <li class="nav-item"><a class="nav-link" href="../../views/auth/RegistroL.php">Iniciar Sesión</a></li>
         </ul>
       </div>
