@@ -35,7 +35,7 @@
           <li class="nav-item"><a class="nav-link" href="#">Historial</a></li>
           <li class="nav-item"><a class="nav-link" href="../../views/Alertas/alertas.php">Alertas</a></li>
           <li class="nav-item"><a class="nav-link" href="../../views/Autobuses/autobuses.php">Autobuses</a></li>
-          <li class="nav-item"><a class="nav-link" href="../../views/auth/RegistroL.php">Iniciar Sesión</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../views/RegistroL.php">Iniciar Sesión</a></li>
         </ul>
       </div>
     </div>
